@@ -1,0 +1,16 @@
+{
+  "name": "atlassian-gas",
+  "version": "0.0.1",
+  "description": "Tiny API wrapper for Atlassian Public Analytics aka GAS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "atlassian",
+    "analytics",
+    "gas"
+  ],
+  "author": "Vitalii Saienko",
+  "license": "ISC"
+}

@@ -1,4 +1,5 @@
 # Atlassian GAS
+
 Tiny API wrapper over Atlassian public analytics (GAS)
 
 [Link to GAS documentention](https://extranet.atlassian.com/display/ANALYTICS/Public+Analytics+aka+GAS) (Atlassian internal only)
@@ -6,7 +7,8 @@ Tiny API wrapper over Atlassian public analytics (GAS)
 ## Usage
 
 ### Create GAS instance
-```
+
+```javascript
 import GAS from 'atlassian-gas'
 
 const gas = new GAS({
@@ -20,7 +22,8 @@ const gas = new GAS({
 ```
 
 ### Send event/events
-```
+
+```javascript
 const event = {
   user: 'User id', // required
   cloudId: 'Instance id or URL', // required

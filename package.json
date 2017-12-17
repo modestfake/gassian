@@ -1,5 +1,5 @@
 {
-  "name": "atlassian-gas",
+  "name": "gassian",
   "version": "0.0.1",
   "description": "Tiny API wrapper for Atlassian Public Analytics aka GAS",
   "main": "lib/index.js",
@@ -23,7 +23,6 @@
     "eslint-plugin-standard": "^3.0.1"
   },
   "dependencies": {
-    "isomorphic-fetch": "^2.2.1",
     "object-hash": "^1.2.0"
   }
 }

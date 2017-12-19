@@ -1,6 +1,15 @@
 {
+  "plugins": [
+    "jest"
+  ],
   "extends": "standard",
   "rules": {
     "indent": ["error", 2, { "MemberExpression": "off" }]
+  },
+  "env": {
+    "jest/globals": true
+  },
+  "globals": {
+    "jsdom": true
   }
 }

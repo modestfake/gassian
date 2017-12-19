@@ -35,10 +35,10 @@ const gas = new GAS({
 | --- |:---:|:---:|:---:| --- |
 | apiUrl | yes | | string | Removed from the library by security reason. You can take URL from [GAS documentation](https://extranet.atlassian.com/display/ANALYTICS/Public+Analytics+aka+GAS) (Atlassian internal only) |
 | product | no | 'jira' | string | The product that your add-on appearance in |
-| subproduct | yes | | string | Add-on name like `jira-addon-template` |
+| subproduct | yes | | string | Add-on name like `bb-addon-template` |
 | prodDomain | yes | | string | E.g. `prod.atlassian.com` |
 | version | no | | string | '1.2.3' |
-| prefix | no | false | boolean | Add add-on name to event name. E.g. `jira-addon-template.project-config.visited` |
+| prefix | no | false | boolean | Add add-on name to event name. E.g. `bb-addon-template.project-config.visited` |
 | fetch | no | | fetch library | For server only. E.g. pass `require('node-fetch')` |
 | detectProd | yes (server only) | | function | We can detect URL in browser with `window.location.href`. But it's tricky on server-side. This function will execute every time when you try to send event. |
 

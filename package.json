@@ -15,6 +15,7 @@
   "author": "Vitalii Saienko",
   "license": "ISC",
   "devDependencies": {
+    "coveralls": "^3.0.0",
     "eslint": "^4.13.1",
     "eslint-config-standard": "^11.0.0-beta.0",
     "eslint-plugin-import": "^2.8.0",

@@ -5,8 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "jest",
-    "test:coverage": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "test": "jest"
   },
   "keywords": [
     "atlassian",

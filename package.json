@@ -4,8 +4,9 @@
   "description": "Tiny API wrapper for Atlassian Public Analytics aka GAS",
   "main": "lib/index.js",
   "scripts": {
+    "lint": "eslint .",
     "test": "jest",
-    "lint": "eslint ."
+    "test:coverage": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "keywords": [
     "atlassian",

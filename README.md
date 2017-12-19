@@ -1,6 +1,6 @@
 # Gassian
 
-Tiny API wrapper over Atlassian public analytics (GAS)
+[![Coverage Status](https://coveralls.io/repos/github/modestfake/gassian/badge.svg?branch=master)](https://coveralls.io/github/modestfake/gassian?branch=master)
 
 ## Installation
 

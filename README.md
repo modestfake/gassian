@@ -1,5 +1,6 @@
 # Gassian
 
+[![Build Status](https://travis-ci.org/modestfake/gassian.svg?branch=master)](https://travis-ci.org/modestfake/gassian)
 [![Coverage Status](https://coveralls.io/repos/github/modestfake/gassian/badge.svg?branch=master)](https://coveralls.io/github/modestfake/gassian?branch=master)
 
 ## Installation

@@ -15,7 +15,8 @@ beforeAll(() => {
 describe('GAS on client', () => {
   test('Pass not all required parameters', () => {
     try {
-      const gas = new GAS({
+      /* eslint no-new: "off" */
+      new GAS({
         apiUrl: 'https://example.com/v1'
       })
     } catch (error) {
@@ -26,7 +27,7 @@ describe('GAS on client', () => {
   test('Pass all required parameters', async () => {
     const gas = new GAS({ ...defaultOptions })
 
-    const { apiUrl, product, subproduct, prodDomain, prefix, fetch } = gas.options
+    const { apiUrl, product, subproduct, prodDomain, prefix } = gas.options
 
     expect(apiUrl).toBe('https://example.com/v1')
     expect(product).toBe('jira')

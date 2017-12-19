@@ -24,7 +24,7 @@ const GAS = require('gassian')
 ```javascript
 const gas = new GAS({
   product: 'bitbucket',
-  subproduct: 'jira-addon-template',
+  subproduct: 'bb-addon-template',
   prodDomain: 'prod.atlassian.com'
 })
 ```

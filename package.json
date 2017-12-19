@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Tiny API wrapper for Atlassian Public Analytics aka GAS",
   "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
   "scripts": {
     "lint": "eslint .",
     "test": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
@@ -12,8 +15,19 @@
     "analytics",
     "gas"
   ],
-  "author": "Vitalii Saienko",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/modestfake/gassian.git"
+  },
+  "author": {
+    "name": "Vitalii Saienko",
+    "email": "modestfake@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/modestfake/gassian/issues"
+  },
+  "homepage": "https://github.com/modestfake/gassian#readme",
   "devDependencies": {
     "coveralls": "^3.0.0",
     "eslint": "^4.13.1",

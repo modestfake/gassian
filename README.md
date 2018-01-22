@@ -39,6 +39,7 @@ const gas = new GAS({
 | prodDomain | yes | | string | E.g. `prod.atlassian.com` |
 | version | no | | string | '1.2.3' |
 | prefix | no | false | boolean | Add add-on name to event name. E.g. `bb-addon-template.project-config.visited` |
+| hash | no | true | boolean | UserId and cloudId are hashed by default. Set to false if you need actual user data |
 | fetch | no | | fetch library | For server only. E.g. pass `require('node-fetch')` |
 | detectProd | yes (server only) | | function | We can detect URL in browser with `window.location.href`. But it's tricky on server-side. This function will execute every time when you try to send event. |
 

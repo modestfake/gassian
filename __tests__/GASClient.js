@@ -57,7 +57,7 @@ describe('GAS on client', () => {
     try {
       await gas.send({})
     } catch (error) {
-      expect(error.message).toBe('Not all required fields passed to an event object!')
+      expect(error.message).toBe('Not all required fields are passed to an event object!')
     }
   })
 

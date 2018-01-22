@@ -23,7 +23,7 @@ describe('GAS on server', () => {
         cloudId: 'https://test-cloud.atlassian.net'
       })
     } catch (error) {
-      expect(error.message).toBe('You are probably running this code on server-side.\nPlease provide fetch library in GAS constructor')
+      expect(error.message).toBe('You are probably running this code on server-side.\nPlease provide fetch function in GAS constructor')
     }
   })
 

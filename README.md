@@ -41,7 +41,7 @@ const gas = new GAS({
 | prefix | no | false | boolean | Add add-on name to event name. E.g. `bb-addon-template.project-config.visited` |
 | hash | no | true | boolean | UserId and cloudId are hashed by default. Set to false if you need actual user data |
 | fetch | no | | fetch library | For server only. E.g. pass `require('node-fetch')` |
-| detectProd | yes (server only) | | function | We can detect URL in browser with `window.location.href`. But it's tricky on server-side. This function will execute every time when you try to send event. |
+| detectProduction | yes (server only) | | function | We can detect URL in browser with `window.location.href`. But it's tricky on server-side. This function will execute every time when you try to send event. Should return `true` or `false` |
 
 ### Send event/events
 
@@ -74,3 +74,4 @@ gas.send([event1, event2])
 | page | no | string | E.g. `project-config` which will included in event name as `project-config.some-button.clicked` |
 | user | yes | string | Unique user id which will be hashed (for not exposing private data) |
 | cloudId | yes | string | Cloud id or cloud URL |
+| hash | no | boolean | Enable or disabling hashing for one event

@@ -12,7 +12,7 @@ describe('GAS on server', () => {
       apiUrl: 'https://example.com/v1',
       subproduct: 'addon-template',
       prodDomain: 'prod.domain.com',
-      detectProd: () => true
+      detectProduction: () => true
     })
 
     try {
@@ -32,7 +32,7 @@ describe('GAS on server', () => {
       apiUrl: 'https://example.com/v1',
       subproduct: 'addon-template',
       prodDomain: 'prod.domain.com',
-      detectProd: () => true,
+      detectProduction: () => true,
       fetch
     })
 

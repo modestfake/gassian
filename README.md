@@ -74,4 +74,5 @@ gas.send([event1, event2])
 | page | no | string | E.g. `project-config` which will included in event name as `project-config.some-button.clicked` |
 | user | yes | string | Unique user id which will be hashed (for not exposing private data) |
 | cloudId | yes | string | Cloud id or cloud URL |
+| properties | no | object | One level nested object. Only primitive (int, float, string, bool) values are allowed |
 | hash | no | boolean | Enable or disabling hashing for one event

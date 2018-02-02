@@ -5,7 +5,7 @@ const GAS = require('../lib')
 const defaultOptions = {
   apiUrl: 'https://example.com/v1',
   subproduct: 'addon-template',
-  prodDomain: 'prod.domain.com'
+  domain: 'prod.domain.com'
 }
 
 beforeAll(() => {
@@ -27,12 +27,12 @@ describe('GAS on client', () => {
   test('Pass all required parameters', async () => {
     const gas = new GAS({ ...defaultOptions })
 
-    const { apiUrl, product, subproduct, prodDomain, prefix } = gas.options
+    const { apiUrl, product, subproduct, domain, prefix } = gas.options
 
     expect(apiUrl).toBe('https://example.com/v1')
     expect(product).toBe('jira')
     expect(subproduct).toBe('addon-template')
-    expect(prodDomain).toBe('prod.domain.com')
+    expect(domain).toBe('prod.domain.com')
     expect(prefix).toBe(false)
   })
 
@@ -51,7 +51,7 @@ describe('GAS on client', () => {
     const gas = new GAS({
       apiUrl: 'https://example.com/v1',
       subproduct: 'addon-template',
-      prodDomain: 'prod.domain.com'
+      domain: 'prod.domain.com'
     })
 
     try {

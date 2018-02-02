@@ -11,8 +11,8 @@ describe('GAS on server', () => {
     const gas = new GAS({
       apiUrl: 'https://example.com/v1',
       subproduct: 'addon-template',
-      prodDomain: 'prod.domain.com',
-      detectProduction: () => true
+      domain: 'prod.domain.com',
+      isServerOnProduction: true
     })
 
     try {
@@ -31,8 +31,8 @@ describe('GAS on server', () => {
     const gas = new GAS({
       apiUrl: 'https://example.com/v1',
       subproduct: 'addon-template',
-      prodDomain: 'prod.domain.com',
-      detectProduction: () => true,
+      domain: 'prod.domain.com',
+      isServerOnProduction: true,
       fetch
     })
 

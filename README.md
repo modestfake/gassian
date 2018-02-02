@@ -75,4 +75,4 @@ gas.send([event1, event2])
 | user | yes | string | Unique user id which will be hashed (for not exposing private data) |
 | cloudId | yes | string | Cloud id or cloud URL |
 | properties | no | object | One level nested object. Only primitive (int, float, string, bool) values are allowed |
-| hash | no | boolean | Enable or disabling hashing for one event
+| hash | no | boolean/object | Enable or disabling hashing for one event. It can accept object with `cloudId` or/and `user` with boolean to hash one of the values.

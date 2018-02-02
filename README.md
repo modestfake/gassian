@@ -25,7 +25,7 @@ const GAS = require('gassian')
 const gas = new GAS({
   product: 'bitbucket',
   subproduct: 'bb-addon-template',
-  prodDomain: 'prod.atlassian.com'
+  domain: 'prod.atlassian.com'
 })
 ```
 
@@ -36,19 +36,19 @@ const gas = new GAS({
 | apiUrl | yes | | string | Removed from the library by security reason. You can take URL from [GAS documentation](https://extranet.atlassian.com/display/ANALYTICS/Public+Analytics+aka+GAS) (Atlassian internal only) |
 | product | no | 'jira' | string | The product that your add-on appearance in |
 | subproduct | yes | | string | Add-on name like `bb-addon-template` |
-| prodDomain | yes | | string | E.g. `prod.atlassian.com` |
+| domain | yes | | string | Production domain. E.g. `prod.atlassian.com` |
 | version | no | | string | '1.2.3' |
 | prefix | no | false | boolean | Add add-on name to event name. E.g. `bb-addon-template.project-config.visited` |
 | hash | no | true | boolean | UserId and cloudId are hashed by default. Set to false if you need actual user data |
 | fetch | no | | fetch library | For server only. E.g. pass `require('node-fetch')` |
-| detectProduction | yes (server only) | | function | We can detect URL in browser with `window.location.href`. But it's tricky on server-side. This function will execute every time when you try to send event. Should return `true` or `false` |
+| isServerOnProduction | yes (server only) | | boolean | We can detect URL in browser with `window.location.href`. But it's tricky on server-side. |
 
 ### Send event/events
 
 ```javascript
 const event = {
-  user: 'User id',
   cloudId: 'Instance id or URL',
+  user: 'User id',
   name: 'Event name',
   page: 'project-config'
 }

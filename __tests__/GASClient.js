@@ -20,7 +20,7 @@ describe('GAS on client', () => {
         apiUrl: 'https://example.com/v1'
       })
     } catch (error) {
-      expect(error.message).toBe('The following fields are required: subproduct, prodDomain')
+      expect(error.message).toBe('The following fields are required: subproduct, domain')
     }
   })
 

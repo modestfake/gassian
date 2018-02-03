@@ -4,6 +4,7 @@ const GAS = require('../lib')
 
 const defaultOptions = {
   apiUrl: 'https://example.com/v1',
+  product: 'jira',
   subproduct: 'addon-template',
   domain: 'prod.domain.com'
 }
@@ -20,7 +21,7 @@ describe('GAS on client', () => {
         apiUrl: 'https://example.com/v1'
       })
     } catch (error) {
-      expect(error.message).toBe('The following fields are required: subproduct, domain')
+      expect(error.message).toBe('The following fields are required: product, domain')
     }
   })
 
@@ -50,6 +51,7 @@ describe('GAS on client', () => {
 
     const gas = new GAS({
       apiUrl: 'https://example.com/v1',
+      product: 'jira',
       subproduct: 'addon-template',
       domain: 'prod.domain.com'
     })

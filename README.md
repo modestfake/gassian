@@ -34,8 +34,8 @@ const gas = new GAS({
 | Parameter | Required | Default | Type | Description |
 | --- |:---:|:---:|:---:| --- |
 | apiUrl | yes | | string | Removed from the library by security reason. You can take URL from [GAS documentation](https://extranet.atlassian.com/display/ANALYTICS/Public+Analytics+aka+GAS) (Atlassian internal only) |
-| product | no | 'jira' | string | The product that your add-on appearance in |
-| subproduct | yes | | string | Add-on name like `bb-addon-template` |
+| product | yes | | string | Product name (for add-on main product name ca be passed) |
+| subproduct | no | | string | Add-on name like `bb-addon-template` |
 | domain | yes | | string | Production domain. E.g. `prod.atlassian.com` |
 | version | no | | string | '1.2.3' |
 | prefix | no | false | boolean | Add add-on name to event name. E.g. `bb-addon-template.project-config.visited` |

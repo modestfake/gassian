@@ -10,6 +10,7 @@ describe('GAS on server', () => {
   test('Send event on server-side without providing a fetch library', async () => {
     const gas = new GAS({
       apiUrl: 'https://example.com/v1',
+      product: 'jira',
       subproduct: 'addon-template',
       domain: 'prod.domain.com',
       isServerOnProduction: true
@@ -30,6 +31,7 @@ describe('GAS on server', () => {
   test('Send event on server-side without providing a fetch library', async () => {
     const gas = new GAS({
       apiUrl: 'https://example.com/v1',
+      product: 'jira',
       subproduct: 'addon-template',
       domain: 'prod.domain.com',
       isServerOnProduction: true,

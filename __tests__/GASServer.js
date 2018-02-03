@@ -8,23 +8,17 @@ const GAS = require('../lib')
 
 describe('GAS on server', () => {
   test('Send event on server-side without providing a fetch library', async () => {
-    const gas = new GAS({
-      apiUrl: 'https://example.com/v1',
-      product: 'jira',
-      subproduct: 'addon-template',
-      domain: 'prod.domain.com',
-      isServerOnProduction: true
-    })
-
     try {
-      await gas.send({
-        name: 'account.visited',
-        page: 'project-config',
-        user: 'user-123',
-        cloudId: 'https://test-cloud.atlassian.net'
+      /* eslint no-new: "off" */
+      new GAS({
+        apiUrl: 'https://example.com/v1',
+        product: 'jira',
+        subproduct: 'addon-template',
+        domain: 'prod.domain.com',
+        isServerOnProduction: true
       })
     } catch (error) {
-      expect(error.message).toBe('You are probably running this code on server-side.\nPlease provide fetch function in GAS constructor')
+      expect(error.message).toBe('The following fields are required: fetch')
     }
   })
 

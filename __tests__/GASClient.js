@@ -25,6 +25,19 @@ describe('GAS on client', () => {
     }
   })
 
+  test('Pass wrong API URL', () => {
+    try {
+      /* eslint no-new: "off" */
+      new GAS({
+        apiUrl: 'https://example.com',
+        product: 'jira',
+        domain: 'prod.domain.com'
+      })
+    } catch (error) {
+      expect(error.message).toBe(`API URL is probably wrong or you've forgotten to add '/v1' to apiUrl`)
+    }
+  })
+
   test('Pass all required parameters', async () => {
     const gas = new GAS({ ...defaultOptions })
 

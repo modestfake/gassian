@@ -86,4 +86,18 @@ describe('GAS on client', () => {
 
     expect(response.responseMessage).toBe('Processed 1 event')
   })
+
+  test('Send empty event array', async () => {
+    jsdom.reconfigure({
+      url: 'https://prod.domain.com/'
+    })
+
+    const gas = new GAS({
+      ...defaultOptions,
+      prefix: true
+    })
+
+    const response = await gas.send([])
+    expect(response).toBe(null)
+  })
 })

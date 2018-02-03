@@ -38,7 +38,7 @@ const gas = new GAS({
 | subproduct | no | | string | Add-on name like `bb-addon-template` |
 | domain | yes | | string | Production domain. E.g. `prod.atlassian.com` |
 | version | no | | string | '1.2.3' |
-| prefix | no | false | boolean | Add add-on name to event name. E.g. `bb-addon-template.project-config.visited` |
+| prefix | no | false | boolean | Add subproduct name to event name. E.g. `bb-addon-template.project-config.visited` |
 | hash | no | true | boolean | UserId and cloudId are hashed by default. Set to false if you need actual user data |
 | fetch | no | | fetch library | For server only. E.g. pass `require('node-fetch')` |
 | isServerOnProduction | yes (server only) | | boolean | We can detect URL in browser with `window.location.href`. But it's tricky on server-side. |
@@ -60,10 +60,10 @@ gas.send(event)
 gas.send([event1, event2])
 
 // Final event name is:
-`project-config.salesforce.visit`
+`project-config.add-on.visit`
 
 // If prefix passed to constructor is true
-`jira-crm-integration.project-config.salesforce.visit`
+`jira-crm-integration.project-config.add-on.visit`
 ```
 
 #### Event payload

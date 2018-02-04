@@ -9,8 +9,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "build": "babel lib -d dist",
-    "prepublish": "npm run build"
+    "build": "babel lib -d dist"
   },
   "keywords": [
     "atlassian",

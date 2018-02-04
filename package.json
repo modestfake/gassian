@@ -1,6 +1,6 @@
 {
   "name": "gassian",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Tiny API wrapper for Atlassian Public Analytics aka GAS",
   "main": "dist/index.js",
   "directories": {

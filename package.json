@@ -2,13 +2,15 @@
   "name": "gassian",
   "version": "0.3.1",
   "description": "Tiny API wrapper for Atlassian Public Analytics aka GAS",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "directories": {
     "lib": "lib"
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "test": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "build": "babel lib -d dist",
+    "prepublish": "npm run build"
   },
   "keywords": [
     "atlassian",
@@ -29,6 +31,8 @@
   },
   "homepage": "https://github.com/modestfake/gassian#readme",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "coveralls": "^3.0.0",
     "eslint": "^4.13.1",
     "eslint-config-standard": "^11.0.0-beta.0",

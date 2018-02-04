@@ -38,7 +38,7 @@ describe('GAS on client', () => {
     }
   })
 
-  test('Pass all required parameters', async () => {
+  test('Pass all required parameters to constructor', async () => {
     const gas = new GAS({ ...defaultOptions })
 
     const { apiUrl, product, subproduct, domain, prefix } = gas.options
@@ -57,7 +57,7 @@ describe('GAS on client', () => {
     expect(response).toEqual(null)
   })
 
-  test('Send event on prod environment with not all required fields', async () => {
+  test('Send event on prod environment with empty object event', async () => {
     jsdom.reconfigure({
       url: 'https://prod.domain.com/'
     })
@@ -71,6 +71,25 @@ describe('GAS on client', () => {
 
     try {
       await gas.send({})
+    } catch (error) {
+      expect(error.message).toBe('Not all required fields are passed to an event object!')
+    }
+  })
+
+  test('Send event on prod environment with not all required fields', async () => {
+    jsdom.reconfigure({
+      url: 'https://prod.domain.com/'
+    })
+
+    const gas = new GAS({
+      apiUrl: 'https://example.com/v1',
+      product: 'jira',
+      subproduct: 'addon-template',
+      domain: 'prod.domain.com'
+    })
+
+    try {
+      await gas.send({ name: 'test-event' })
     } catch (error) {
       expect(error.message).toBe('Not all required fields are passed to an event object!')
     }

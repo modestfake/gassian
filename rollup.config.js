@@ -14,7 +14,8 @@ export default [
     plugins: [
       resolve({
         jsnext: true,
-        main: true
+        main: true,
+        browser: true
       }),
       commonjs(),
       babel({

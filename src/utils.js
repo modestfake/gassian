@@ -1,4 +1,4 @@
-const objectHash = require('object-hash')
+const objectHash = require('object-hash/dist/object_hash')
 
 function validateRequiredFields (fields) {
   const required = [

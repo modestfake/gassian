@@ -1,4 +1,4 @@
-const objectHash = require('object-hash/dist/object_hash')
+const md5 = require('md5')
 
 function validateRequiredFields (fields) {
   const required = [
@@ -75,8 +75,8 @@ function _hash (event, globalHash) {
   }
 
   return {
-    cloudId: hashObject.cloudId ? objectHash(cloudId) : cloudId,
-    user: hashObject.user ? objectHash(user) : user
+    cloudId: hashObject.cloudId ? md5(cloudId) : cloudId,
+    user: hashObject.user ? md5(user) : user
   }
 }
 

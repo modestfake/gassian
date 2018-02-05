@@ -26,8 +26,8 @@ describe('Unit test of format function', () => {
     } = format(options, event)
 
     expect(name).toBe('foo.bar')
-    expect(cloudId).toBe('5dfb5f9a5c63abd2ab8fc2746c5927744f15d045')
-    expect(user).toBe('f03b173eb4914e48632b509e468202f04724d1a1')
+    expect(cloudId).toBe('e86ec0156714aa4501735f4fc66fc812')
+    expect(user).toBe('7349ddfd75b6f5b3325bacdaf3a913cb')
     expect(product).toBe('jira')
     expect(subproduct).toBe('addon-template')
     expect(server).toBe('prod.domain.com')
@@ -60,8 +60,8 @@ describe('Unit test of format function', () => {
       { ...event, hash: true }
     )
 
-    expect(cloudId).toBe('5dfb5f9a5c63abd2ab8fc2746c5927744f15d045')
-    expect(user).toBe('f03b173eb4914e48632b509e468202f04724d1a1')
+    expect(cloudId).toBe('e86ec0156714aa4501735f4fc66fc812')
+    expect(user).toBe('7349ddfd75b6f5b3325bacdaf3a913cb')
   })
 
   test('Global hash is enabled but for user is disabled', () => {
@@ -70,7 +70,7 @@ describe('Unit test of format function', () => {
       { ...event, hash: { user: false } }
     )
 
-    expect(cloudId).toBe('5dfb5f9a5c63abd2ab8fc2746c5927744f15d045')
+    expect(cloudId).toBe('e86ec0156714aa4501735f4fc66fc812')
     expect(user).toBe('test-user-id')
   })
 
@@ -80,7 +80,7 @@ describe('Unit test of format function', () => {
       { ...event, hash: { cloudId: true } }
     )
 
-    expect(cloudId).toBe('5dfb5f9a5c63abd2ab8fc2746c5927744f15d045')
+    expect(cloudId).toBe('e86ec0156714aa4501735f4fc66fc812')
     expect(user).toBe('test-user-id')
   })
 })

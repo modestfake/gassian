@@ -2,14 +2,17 @@
   "name": "gassian",
   "version": "0.3.2",
   "description": "Tiny API wrapper for Atlassian Public Analytics aka GAS",
-  "main": "dist/index.js",
-  "directories": {
-    "lib": "lib"
-  },
+  "main": "dist/gassian.cjs.js",
+  "module": "dist/gassian.esm.js",
+  "browser": "dist/gassian.umd.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
+    "build": "rollup -c",
+    "start": "rollup -c -w",
     "lint": "eslint .",
-    "test": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "build": "babel lib -d dist"
+    "test": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "keywords": [
     "atlassian",
@@ -30,7 +33,8 @@
   },
   "homepage": "https://github.com/modestfake/gassian#readme",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.6.1",
     "coveralls": "^3.0.0",
     "eslint": "^4.13.1",
@@ -43,6 +47,10 @@
     "jest": "^22.0.3",
     "nock": "^9.1.4",
     "node-fetch": "^1.7.3",
+    "rollup": "^0.55.3",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-commonjs": "^8.3.0",
+    "rollup-plugin-node-resolve": "^3.0.2",
     "whatwg-fetch": "^2.0.3"
   },
   "dependencies": {

@@ -4,7 +4,7 @@
 
 const nock = require('nock')
 const fetch = require('node-fetch')
-const GAS = require('../lib')
+const GAS = require('../src')
 
 describe('GAS on server', () => {
   test('Send event on server-side without providing a fetch library', async () => {

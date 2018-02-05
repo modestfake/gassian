@@ -1,4 +1,4 @@
-const { format } = require('../lib/utils')
+const { format } = require('../src/utils')
 
 const options = {
   product: 'jira',

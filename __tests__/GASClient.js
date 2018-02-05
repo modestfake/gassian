@@ -1,6 +1,6 @@
 const fetch = require('node-fetch')
 const nock = require('nock')
-const GAS = require('../lib')
+const GAS = require('../src')
 
 const defaultOptions = {
   apiUrl: 'https://example.com/v1',

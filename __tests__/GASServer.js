@@ -53,4 +53,25 @@ describe('GAS on server', () => {
 
     expect(response.responseMessage).toBe('Processed 2 event')
   })
+
+  test('Send event with "undefined" values', async () => {
+    const gas = new GAS({
+      apiUrl: 'https://example.com/v1',
+      product: 'jira',
+      subproduct: 'addon-template',
+      domain: 'prod.domain.com',
+      isServerOnProduction: true,
+      fetch
+    })
+
+    try {
+      await gas.send({
+        name: 'account.visited',
+        user: undefined,
+        cloudId: undefined
+      })
+    } catch (error) {
+      expect(error.message).toBe('Not all required fields are passed to an event object!')
+    }
+  })
 })

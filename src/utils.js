@@ -45,8 +45,10 @@ function validatePayload (params) {
     'name'
   ]
 
-  const checkRequired = fields => requiredFields.every(field => {
-    return Object.keys(fields).includes(field) && fields[field].length
+  const checkRequired = fields => requiredFields.every(required => {
+    return Object.keys(fields).includes(required) &&
+      fields[required] &&
+      fields[required].length
   })
 
   if (Array.isArray(params)) {

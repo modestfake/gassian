@@ -40,7 +40,6 @@ const gas = new GAS({
 | version | no | | string | '1.2.3' |
 | prefix | no | false | boolean | Add subproduct name to event name. E.g. `bb-addon-template.project-config.visited` |
 | hash | no | true | boolean | UserId and cloudId are hashed by default. Set to false if you need actual user data |
-| fetch | no | | fetch library | For server only. E.g. pass `require('node-fetch')` |
 | isServerOnProduction | yes (server only) | | boolean | We can detect URL in browser with `window.location.href`. But it's tricky on server-side. |
 
 ### Send event/events
@@ -53,7 +52,7 @@ const event = {
   page: 'project-config'
 }
 
-// To send one event pass event object to sendmethod
+// To send one event pass event object to send method
 gas.send(event)
 
 // To send multiple events pass array of event objects

@@ -10,6 +10,7 @@
     "jest/globals": true
   },
   "globals": {
-    "jsdom": true
+    "jsdom": true,
+    "fetch": true
   }
 }

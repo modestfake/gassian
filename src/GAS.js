@@ -13,7 +13,6 @@ class GAS {
     this.options = Object.assign({
       prefix: false,
       hash: true,
-      fetch: typeof window !== 'undefined' ? window.fetch : null,
       isServerOnProduction: false
     }, options)
   }
@@ -38,7 +37,6 @@ class GAS {
 
     if (multi) {
       return request(
-        options.fetch,
         options.apiUrl,
         { events: params.map(event => format(options, event)) },
         multi
@@ -46,7 +44,6 @@ class GAS {
     }
 
     return request(
-      options.fetch,
       options.apiUrl,
       format(options, params)
     )

@@ -2,27 +2,12 @@
  * @jest-environment node
  */
 
+require('cross-fetch/polyfill')
 const nock = require('nock')
-const fetch = require('node-fetch')
 const GAS = require('../src')
 
 describe('GAS on server', () => {
-  test('Send event on server-side without providing a fetch library', async () => {
-    try {
-      /* eslint no-new: "off" */
-      new GAS({
-        apiUrl: 'https://example.com/v1',
-        product: 'jira',
-        subproduct: 'addon-template',
-        domain: 'prod.domain.com',
-        isServerOnProduction: true
-      })
-    } catch (error) {
-      expect(error.message).toBe('The following fields are required: fetch')
-    }
-  })
-
-  test('Send event on server-side without providing a fetch library', async () => {
+  test('Send multiple events', async () => {
     const gas = new GAS({
       apiUrl: 'https://example.com/v1',
       product: 'jira',

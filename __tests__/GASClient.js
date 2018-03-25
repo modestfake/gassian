@@ -1,4 +1,4 @@
-const fetch = require('node-fetch')
+require('cross-fetch/polyfill')
 const nock = require('nock')
 const GAS = require('../src')
 
@@ -8,10 +8,6 @@ const defaultOptions = {
   subproduct: 'addon-template',
   domain: 'prod.domain.com'
 }
-
-beforeAll(() => {
-  global.fetch = fetch
-})
 
 describe('GAS on client', () => {
   test('Pass not all required parameters', () => {

@@ -1,4 +1,5 @@
 const md5 = require('md5')
+require('cross-fetch/polyfill')
 
 function validateRequiredFields (fields) {
   const required = [
@@ -6,10 +7,6 @@ function validateRequiredFields (fields) {
     'product',
     'domain'
   ]
-
-  if (typeof window === 'undefined') {
-    required.push('fetch')
-  }
 
   const errors = required.filter(f => !fields[f])
 
@@ -113,7 +110,7 @@ function format (options, event) {
   return payload
 }
 
-async function request (fetch, apiUrl, payload, multi = false) {
+async function request (apiUrl, payload, multi = false) {
   return fetch(`${apiUrl}/event${multi ? 's' : ''}`, {
     headers: { 'Content-Type': 'application/json' },
     method: 'POST',

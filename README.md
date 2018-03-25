@@ -24,7 +24,7 @@ const GAS = require('gassian')
 ```javascript
 const gas = new GAS({
   product: 'bitbucket',
-  subproduct: 'bb-addon-template',
+  subproduct: 'addon-template',
   domain: 'prod.atlassian.com'
 })
 ```
@@ -33,22 +33,22 @@ const gas = new GAS({
 
 | Parameter | Required | Default | Type | Description |
 | --- |:---:|:---:|:---:| --- |
-| apiUrl | yes | | string | Removed from the library by security reason. You can take URL from [GAS documentation](https://extranet.atlassian.com/display/ANALYTICS/Public+Analytics+aka+GAS) (Atlassian internal only) |
-| product | yes | | string | Product name (for add-on main product name ca be passed) |
-| subproduct | no | | string | Add-on name like `bb-addon-template` |
+| apiUrl | yes | | string | Removed from the library by security reason. You can take URL from [GAS documentation](https://extranet.atlassian.com/display/ANALYTICS/Public+Analytics+aka+GAS) (Atlassian internal only). Don't forget to add version to URL |
+| product | yes | | string | Product name (for add-ons main product name can be passed, e.g. jira or bitbucket) |
+| subproduct | no | | string | Add-on name like `addon-template` |
 | domain | yes | | string | Production domain. E.g. `prod.atlassian.com` |
 | version | no | | string | '1.2.3' |
-| prefix | no | false | boolean | Add subproduct name to event name. E.g. `bb-addon-template.project-config.visited` |
-| hash | no | true | boolean | UserId and cloudId are hashed by default. Set to false if you need actual user data |
-| isServerOnProduction | yes (server only) | | boolean | We can detect URL in browser with `window.location.href`. But it's tricky on server-side. |
+| prefix | no | false | boolean | It adds subproduct name to event name. E.g. `addon-template.project-config.visited` |
+| hash | no | true | boolean | UserId and cloudId are hashed by default. Set to false if you need actual user data. |
+| isServerOnProduction | yes (server only) | | boolean | We can detect actual URL in browser with `window.location.href`. But it's tricky on server-side. That's why we need it on server |
 
 ### Send event/events
 
 ```javascript
 const event = {
   cloudId: 'Instance id or URL',
-  user: 'User id',
-  name: 'Event name',
+  user: 'User id or name',
+  name: 'visited',
   page: 'project-config'
 }
 
@@ -59,10 +59,10 @@ gas.send(event)
 gas.send([event1, event2])
 
 // Final event name is:
-`project-config.add-on.visit`
+`project-config.visited`
 
 // If prefix passed to constructor is true
-`jira-crm-integration.project-config.add-on.visit`
+`addon-template.project-config.visited`
 ```
 
 #### Event payload

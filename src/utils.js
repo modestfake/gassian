@@ -2,13 +2,13 @@ const md5 = require('md5')
 require('cross-fetch/polyfill')
 
 function validateRequiredFields (fields) {
-  const required = [
+  const requiredFields = [
     'apiUrl',
     'product',
     'domain'
   ]
 
-  const errors = required.filter(f => !fields[f])
+  const errors = requiredFields.filter(f => !fields[f])
 
   if (errors.length) {
     throw new Error(`The following fields are required: ${errors.join(', ')}`)
@@ -42,17 +42,33 @@ function validatePayload (params) {
     'name'
   ]
 
-  const checkRequired = fields => requiredFields.every(required => {
-    return Object.keys(fields).includes(required) &&
-      fields[required] &&
-      fields[required].length
-  })
+  const checkRequired = event => requiredFields
+  .filter(required => !(Object.keys(event)
+    .includes(required) &&
+      event[required] &&
+      event[required].length)
+  )
 
   if (Array.isArray(params)) {
-    return params.every(events => checkRequired(events))
-  }
+    const errorList = params.reduce((res, event, index) => {
+      const errors = checkRequired(event)
+      if (!errors.length) return res
 
-  return checkRequired(params)
+      return [
+        ...res,
+        `${event.name || `index ${index}`} (${errors.join(', ')})`
+      ]
+    }, [])
+
+    if (errorList.length) {
+      throw new Error(`Please pass required fields for these events: ${errorList.join(', ')}!`)
+    }
+  } else {
+    const errors = checkRequired(params)
+    if (errors.length) {
+      throw new Error(`Please pass required fields: ${errors.join(', ')}!`)
+    }
+  }
 }
 
 function _hash (event, globalHash) {

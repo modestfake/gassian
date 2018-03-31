@@ -68,7 +68,7 @@ describe('GAS on client', () => {
     try {
       await gas.send({})
     } catch (error) {
-      expect(error.message).toBe('Not all required fields are passed to an event object!')
+      expect(error.message).toBe('Please pass required fields: user, cloudId, name!')
     }
   })
 
@@ -87,7 +87,29 @@ describe('GAS on client', () => {
     try {
       await gas.send({ name: 'test-event' })
     } catch (error) {
-      expect(error.message).toBe('Not all required fields are passed to an event object!')
+      expect(error.message).toBe('Please pass required fields: user, cloudId!')
+    }
+  })
+
+  test('Send events on prod environment with not all required fields', async () => {
+    jsdom.reconfigure({
+      url: 'https://prod.domain.com/'
+    })
+
+    const gas = new GAS({
+      apiUrl: 'https://example.com/v1',
+      product: 'jira',
+      subproduct: 'addon-template',
+      domain: 'prod.domain.com'
+    })
+
+    try {
+      await gas.send([
+        { name: 'test-event' },
+        { cloudId: 'test-id' }
+      ])
+    } catch (error) {
+      expect(error.message).toBe('Please pass required fields for these events: test-event (user, cloudId), index 1 (user, name)!')
     }
   })
 

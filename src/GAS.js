@@ -31,9 +31,7 @@ class GAS {
       return null
     }
 
-    if (!validatePayload(params)) {
-      throw new Error('Not all required fields are passed to an event object!')
-    }
+    validatePayload(params)
 
     if (multi) {
       return request(

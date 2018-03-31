@@ -56,7 +56,7 @@ describe('GAS on server', () => {
         cloudId: undefined
       })
     } catch (error) {
-      expect(error.message).toBe('Not all required fields are passed to an event object!')
+      expect(error.message).toBe('Please pass required fields: user, cloudId!')
     }
   })
 })

@@ -1,32 +1,32 @@
 const md5 = require('md5')
 require('cross-fetch/polyfill')
 
-function validateRequiredFields (fields) {
+function validateOptions (options) {
   const requiredFields = [
     'apiUrl',
     'product',
     'domain'
   ]
 
-  const errors = requiredFields.filter(f => !fields[f])
+  const errors = requiredFields.filter(f => !(f in options))
 
   if (errors.length) {
     throw new Error(`The following fields are required: ${errors.join(', ')}`)
   }
 
-  if (!fields.apiUrl.includes('v1')) {
+  if (!options.apiUrl.includes('v1')) {
     throw new Error(`API URL is probably wrong or you've forgotten to add '/v1' to apiUrl`)
   }
 }
 
-function getEnvironment () {
+function _getEnvironment () {
   return typeof window === 'undefined'
     ? 'node'
     : 'browser'
 }
 
 function isProduction ({ domain, isServerOnProduction }) {
-  const env = getEnvironment()
+  const env = _getEnvironment()
 
   if (env === 'browser') {
     return window.location.href.includes(domain)
@@ -35,38 +35,41 @@ function isProduction ({ domain, isServerOnProduction }) {
   return isServerOnProduction
 }
 
-function validatePayload (params) {
+function validatePayload (payload) {
   const requiredFields = [
     'user',
     'cloudId',
     'name'
   ]
 
-  const checkRequired = event => requiredFields
-  .filter(required => !(Object.keys(event)
-    .includes(required) &&
-      event[required] &&
-      event[required].length)
-  )
+  const validateEvent = event => requiredFields
+  .filter(field => !(
+    Object.keys(event).includes(field) &&
+    event[field] &&
+    event[field].length
+  ))
 
-  if (Array.isArray(params)) {
-    const errorList = params.reduce((res, event, index) => {
-      const errors = checkRequired(event)
-      if (!errors.length) return res
+  if (Array.isArray(payload)) {
+    const badEventsList = payload.reduce((acc, event, index) => {
+      const fieldList = validateEvent(event)
+      if (!fieldList.length) return acc
 
       return [
-        ...res,
-        `${event.name || `index ${index}`} (${errors.join(', ')})`
+        ...acc,
+        `${event.name || `event index ${index}`} (${fieldList.join(', ')})`
       ]
     }, [])
 
-    if (errorList.length) {
-      throw new Error(`Please pass required fields for these events: ${errorList.join(', ')}!`)
+    if (badEventsList.length) {
+      throw new Error([
+        'Please pass required fields for these events:',
+        `${badEventsList.join(', ')}!`
+      ].join(' '))
     }
   } else {
-    const errors = checkRequired(params)
-    if (errors.length) {
-      throw new Error(`Please pass required fields: ${errors.join(', ')}!`)
+    const fieldList = validateEvent(payload)
+    if (fieldList.length) {
+      throw new Error(`Please pass required fields: ${fieldList.join(', ')}!`)
     }
   }
 }
@@ -78,24 +81,24 @@ function _hash (event, globalHash) {
     ? hash
     : globalHash
 
-  const hashObject = {
+  const hashConfig = {
     cloudId: shouldHash,
     user: shouldHash
   }
 
   if (typeof hash === 'object') {
     Object.keys(hash).forEach(field => {
-      hashObject[field] = hash[field]
+      hashConfig[field] = hash[field]
     })
   }
 
   return {
-    cloudId: hashObject.cloudId ? md5(cloudId) : cloudId,
-    user: hashObject.user ? md5(user) : user
+    cloudId: hashConfig.cloudId ? md5(cloudId) : cloudId,
+    user: hashConfig.user ? md5(user) : user
   }
 }
 
-function format (options, event) {
+function format (event, options) {
   const { domain, product, subproduct, version, prefix } = options
   const eventParts = [event.page, event.name]
 
@@ -103,7 +106,7 @@ function format (options, event) {
     eventParts.unshift(subproduct)
   }
 
-  const eventName = eventParts.filter(e => e).join('.')
+  const eventName = eventParts.filter(Boolean).join('.')
 
   const { user, cloudId } = _hash(event, options.hash)
 
@@ -154,15 +157,15 @@ function parseJSON (response) {
     /* istanbul ignore next */
     throw new Error('Response should be in JSON format')
   } else {
-    const error = new Error(response.statusText)
-    error.response = response
-
-    throw error
+    throw Object.assign(
+      new Error(response.statusText),
+      { response }
+    )
   }
 }
 
 module.exports = {
-  validateRequiredFields,
+  validateOptions,
   isProduction,
   validatePayload,
   format,

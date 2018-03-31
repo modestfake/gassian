@@ -28,7 +28,7 @@ export default [
       { file: pkg.main, format: 'cjs' },
       { file: pkg.module, format: 'es' }
     ],
-    external: ['md5'],
+    external: ['md5', 'cross-fetch/polyfill'],
     plugins: [
       resolve(),
       commonjs(),

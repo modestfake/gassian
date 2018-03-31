@@ -1,14 +1,14 @@
 const {
-  validateRequiredFields,
+  validateOptions,
   isProduction,
   validatePayload,
   format,
   request
-} = require('./utils')
+} = require('./util')
 
 class GAS {
   constructor (options) {
-    validateRequiredFields(options)
+    validateOptions(options)
 
     this.options = Object.assign({
       prefix: false,
@@ -17,33 +17,30 @@ class GAS {
     }, options)
   }
 
-  async send (params) {
-    const { options } = this
-
-    if (!isProduction(options)) {
+  async send (payload) {
+    if (!isProduction(this.options)) {
       return null
     }
 
-    const multi = Array.isArray(params)
+    const multi = Array.isArray(payload)
 
-    if (multi && !params.length) {
-      console.warn('Empty array is not valid!')
-      return null
+    if (multi && !payload.length) {
+      return console.warn('Empty array is not valid!')
     }
 
-    validatePayload(params)
+    validatePayload(payload)
 
     if (multi) {
       return request(
-        options.apiUrl,
-        { events: params.map(event => format(options, event)) },
+        this.options.apiUrl,
+        { events: payload.map(event => format(event, this.options)) },
         multi
       )
     }
 
     return request(
-      options.apiUrl,
-      format(options, params)
+      this.options.apiUrl,
+      format(payload, this.options)
     )
   }
 }

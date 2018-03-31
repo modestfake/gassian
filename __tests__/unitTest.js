@@ -1,4 +1,4 @@
-const { format } = require('../src/utils')
+const { format } = require('../src/util')
 
 const options = {
   product: 'jira',
@@ -23,7 +23,7 @@ describe('Unit test of format function', () => {
       subproduct,
       server,
       version
-    } = format(options, event)
+    } = format(event, options)
 
     expect(name).toBe('foo.bar')
     expect(cloudId).toBe('e86ec0156714aa4501735f4fc66fc812')
@@ -36,8 +36,8 @@ describe('Unit test of format function', () => {
 
   test('Global hash is disabled', () => {
     const { cloud_id: cloudId, user } = format(
-      { ...options, hash: false },
-      event
+      event,
+      { ...options, hash: false }
     )
 
     expect(cloudId).toBe('prod.example.com')
@@ -46,8 +46,8 @@ describe('Unit test of format function', () => {
 
   test('Global hash is enabled but for current event is disabled', () => {
     const { cloud_id: cloudId, user } = format(
-      options,
-      { ...event, hash: false }
+      { ...event, hash: false },
+      options
     )
 
     expect(cloudId).toBe('prod.example.com')
@@ -56,8 +56,8 @@ describe('Unit test of format function', () => {
 
   test('Global hash is disabled but for current event is enabled', () => {
     const { cloud_id: cloudId, user } = format(
-      { ...options, hash: false },
-      { ...event, hash: true }
+      { ...event, hash: true },
+      { ...options, hash: false }
     )
 
     expect(cloudId).toBe('e86ec0156714aa4501735f4fc66fc812')
@@ -66,8 +66,8 @@ describe('Unit test of format function', () => {
 
   test('Global hash is enabled but for user is disabled', () => {
     const { cloud_id: cloudId, user } = format(
-      options,
-      { ...event, hash: { user: false } }
+      { ...event, hash: { user: false } },
+      options
     )
 
     expect(cloudId).toBe('e86ec0156714aa4501735f4fc66fc812')
@@ -76,8 +76,8 @@ describe('Unit test of format function', () => {
 
   test('Global hash is disabled but for cloudId is enabled', () => {
     const { cloud_id: cloudId, user } = format(
-      { ...options, hash: false },
-      { ...event, hash: { cloudId: true } }
+      { ...event, hash: { cloudId: true } },
+      { ...options, hash: false }
     )
 
     expect(cloudId).toBe('e86ec0156714aa4501735f4fc66fc812')

@@ -83,4 +83,14 @@ describe('Unit test of format function', () => {
     expect(cloudId).toBe('e86ec0156714aa4501735f4fc66fc812')
     expect(user).toBe('test-user-id')
   })
+
+  test('Passing numbers to event object results to strings', () => {
+    const { cloud_id: cloudId, user } = format(
+      { name: 'foo.bar', cloudId: 12345, user: 123 },
+      { ...options, hash: false }
+    )
+
+    expect(cloudId).toBe('12345')
+    expect(user).toBe('123')
+  })
 })

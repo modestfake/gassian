@@ -45,12 +45,11 @@ function validatePayload (payload) {
   const validateEvent = event => requiredFields
   .filter(field => !(
     Object.keys(event).includes(field) &&
-    event[field] &&
-    event[field].length
+    event[field]
   ))
 
   if (Array.isArray(payload)) {
-    const badEventsList = payload.reduce((acc, event, index) => {
+    const invalidEventList = payload.reduce((acc, event, index) => {
       const fieldList = validateEvent(event)
       if (!fieldList.length) return acc
 
@@ -60,10 +59,10 @@ function validatePayload (payload) {
       ]
     }, [])
 
-    if (badEventsList.length) {
+    if (invalidEventList.length) {
       throw new Error([
         'Please pass required fields for these events:',
-        `${badEventsList.join(', ')}!`
+        `${invalidEventList.join(', ')}!`
       ].join(' '))
     }
   } else {
@@ -93,8 +92,8 @@ function _hash (event, globalHash) {
   }
 
   return {
-    cloudId: hashConfig.cloudId ? md5(cloudId) : cloudId,
-    user: hashConfig.user ? md5(user) : user
+    cloudId: hashConfig.cloudId ? md5(cloudId) : cloudId.toString(),
+    user: hashConfig.user ? md5(user) : user.toString()
   }
 }
 

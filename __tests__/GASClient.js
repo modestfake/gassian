@@ -137,6 +137,29 @@ describe('GAS on client', () => {
     expect(response.responseMessage).toBe('Processed 1 event')
   })
 
+  test('Send event where some properties are numbers', async () => {
+    jsdom.reconfigure({
+      url: 'https://prod.domain.com/'
+    })
+
+    const gas = new GAS({
+      ...defaultOptions,
+      prefix: true
+    })
+
+    await nock('https://example.com/v1/')
+    .post('/event')
+    .reply(200, { responseMessage: 'Processed 1 event' })
+
+    const response = await gas.send({
+      name: 'account.visited',
+      user: 4,
+      cloudId: 'https://test-cloud.atlassian.net'
+    })
+
+    expect(response.responseMessage).toBe('Processed 1 event')
+  })
+
   test('Send empty event array', async () => {
     jsdom.reconfigure({
       url: 'https://prod.domain.com/'

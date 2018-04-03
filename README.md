@@ -1,5 +1,7 @@
 # Gassian
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/modestfake/gassian.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/modestfake/gassian.svg?branch=master)](https://travis-ci.org/modestfake/gassian)
 [![Coverage Status](https://coveralls.io/repos/github/modestfake/gassian/badge.svg?branch=master&service=github)](https://coveralls.io/github/modestfake/gassian?branch=master)
 

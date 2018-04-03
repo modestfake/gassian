@@ -12,6 +12,7 @@ export default [
       file: pkg.browser,
       format: 'umd'
     },
+    external: ['md5', 'cross-fetch/polyfill'],
     plugins: [
       resolve(),
       commonjs(),

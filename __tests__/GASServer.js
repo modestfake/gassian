@@ -56,7 +56,7 @@ describe('GAS on server', () => {
         cloudId: undefined
       })
     } catch (error) {
-      expect(error.message).toBe('Please pass required fields: user, cloudId!')
+      expect(error.message).toBe('Please pass required fields: cloudId!')
     }
   })
 })

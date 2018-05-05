@@ -69,11 +69,11 @@ gas.send([event1, event2])
 
 #### Event payload
 
-| Parameter | Required | Type | Description |
-| --- |:---:|:---:| --- |
-| name | yes | string | Event dotseparated name. E.g. `some-button.clicked` |
-| page | no | string | E.g. `project-config` which will included in event name as `project-config.some-button.clicked` |
-| user | yes | string | Unique user id which will be hashed (for not exposing private data) |
-| cloudId | yes | string | Cloud id or cloud URL |
-| properties | no | object | One level nested object. Only primitive (int, float, string, bool) values are allowed |
-| hash | no | boolean/object | Enable or disabling hashing for one event. It can accept object with `cloudId` or/and `user` with boolean to hash one of the values.
+| Parameter | Required | Default | Type | Description |
+| --- |:---:|:---:|:---:| --- |
+| name | yes | | string | Event dotseparated name. E.g. `some-button.clicked` |
+| page | no | | string | E.g. `project-config` which will included in event name as `project-config.some-button.clicked` |
+| user | yes | '-' | string or integer | Unique user id which will be hashed (for not exposing private data) |
+| cloudId | yes | | string or integer | Cloud id or cloud URL |
+| properties | no | | object | One level nested object. Only primitive (int, float, string, bool) values are allowed |
+| hash | no | | boolean or object | Enable or disabling hashing for one event. Also, it can accept object with `cloudId` or/and `user` with boolean to hash one of the values.

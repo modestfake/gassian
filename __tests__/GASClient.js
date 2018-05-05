@@ -68,7 +68,7 @@ describe('GAS on client', () => {
     try {
       await gas.send({})
     } catch (error) {
-      expect(error.message).toBe('Please pass required fields: user, cloudId, name!')
+      expect(error.message).toBe('Please pass required fields: cloudId, name!')
     }
   })
 
@@ -87,7 +87,7 @@ describe('GAS on client', () => {
     try {
       await gas.send({ name: 'test-event' })
     } catch (error) {
-      expect(error.message).toBe('Please pass required fields: user, cloudId!')
+      expect(error.message).toBe('Please pass required fields: cloudId!')
     }
   })
 
@@ -109,7 +109,7 @@ describe('GAS on client', () => {
         { cloudId: 'test-id' }
       ])
     } catch (error) {
-      expect(error.message).toBe('Please pass required fields for these events: test-event (user, cloudId), event index 1 (user, name)!')
+      expect(error.message).toBe('Please pass required fields for these events: test-event (cloudId), event [1] (name)!')
     }
   })
 

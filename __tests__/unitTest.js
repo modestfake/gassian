@@ -93,4 +93,14 @@ describe('Unit test of format function', () => {
     expect(cloudId).toBe('12345')
     expect(user).toBe('123')
   })
+
+  test('Don\'t pass user to event, global hashing is still enabled', () => {
+    const { user: removedUser, ...restOfEvent } = event
+    const { user } = format(
+      restOfEvent,
+      options
+    )
+
+    expect(user).toBe('-')
+  })
 })

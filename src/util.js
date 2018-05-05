@@ -36,11 +36,7 @@ function isProduction ({ domain, isServerOnProduction }) {
 }
 
 function validatePayload (payload) {
-  const requiredFields = [
-    'user',
-    'cloudId',
-    'name'
-  ]
+  const requiredFields = ['cloudId', 'name']
 
   const validateEvent = event => requiredFields
   .filter(field => !(
@@ -55,7 +51,7 @@ function validatePayload (payload) {
 
       return [
         ...acc,
-        `${event.name || `event index ${index}`} (${fieldList.join(', ')})`
+        `${event.name || `event [${index}]`} (${fieldList.join(', ')})`
       ]
     }, [])
 
@@ -91,9 +87,13 @@ function _hash (event, globalHash) {
     })
   }
 
+  if (!user) {
+    hashConfig['user'] = false
+  }
+
   return {
     cloudId: hashConfig.cloudId ? md5(cloudId) : cloudId.toString(),
-    user: hashConfig.user ? md5(user) : user.toString()
+    user: hashConfig.user ? md5(user) : (user ? user.toString() : '-')
   }
 }
 

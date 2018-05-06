@@ -193,6 +193,7 @@ describe('GAS on client', () => {
     })
 
     expect(console.log).toHaveBeenCalled()
+    // TODO: check if fetch is not called
   })
 
   test('Logging is true and environment is production', async () => {
@@ -205,6 +206,10 @@ describe('GAS on client', () => {
       logging: true
     })
 
+    await nock('https://example.com/v1/')
+    .post('/event')
+    .reply(200, { responseMessage: 'Processed 1 event' })
+
     await gas.send({
       name: 'test-event',
       user: 'user-123',
@@ -212,5 +217,6 @@ describe('GAS on client', () => {
     })
 
     expect(console.log).toHaveBeenCalled()
+    // TODO: check if fetch is called
   })
 })

@@ -43,6 +43,7 @@ const gas = new GAS({
 | prefix | no | false | boolean | It adds subproduct name to event name. E.g. `addon-template.project-config.visited` |
 | hash | no | true | boolean | UserId and cloudId are hashed by default. Set to false if you need actual user data. |
 | isServerOnProduction | yes (server only) | | boolean | We can detect actual URL in browser with `window.location.href`. But it's tricky on server-side. That's why we need it on server |
+| logging | no | false | boolean | Logs prepared to send event to console. Remove this parameter in production
 
 ### Send event/events
 

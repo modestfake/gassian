@@ -25,7 +25,7 @@ function _getEnvironment () {
     : 'browser'
 }
 
-function isProduction ({ domain, isServerOnProduction }) {
+function checkIsProduction ({ domain, isServerOnProduction }) {
   const env = _getEnvironment()
 
   if (env === 'browser') {
@@ -98,7 +98,15 @@ function _hash (event, globalHash) {
 }
 
 function format (event, options) {
-  const { domain, product, subproduct, version, prefix } = options
+  const {
+    domain,
+    product,
+    subproduct,
+    version,
+    prefix,
+    hash,
+    logging
+  } = options
   const eventParts = [event.page, event.name]
 
   if (prefix) {
@@ -107,7 +115,7 @@ function format (event, options) {
 
   const eventName = eventParts.filter(Boolean).join('.')
 
-  const { user, cloudId } = _hash(event, options.hash)
+  const { user, cloudId } = _hash(event, hash)
 
   const payload = {
     name: eventName,
@@ -127,14 +135,24 @@ function format (event, options) {
     }
   })
 
+  if (logging) {
+    console.log(`>>>GAS EVENT\n`, payload, `\n<<<GAS EVENT`)
+  }
+
   return payload
 }
 
-async function request (apiUrl, payload, multi = false) {
-  return fetch(`${apiUrl}/event${multi ? 's' : ''}`, {
+async function request (payload, options, multi) {
+  const data = multi
+    ? { events: payload.map(event => format(event, options)) }
+    : format(payload, options)
+
+  if (options.logging && !checkIsProduction(options)) return
+
+  return fetch(`${options.apiUrl}/event${multi ? 's' : ''}`, {
     headers: { 'Content-Type': 'application/json' },
     method: 'POST',
-    body: JSON.stringify(payload)
+    body: JSON.stringify(data)
   })
   .then(parseJSON)
   .catch(error => {
@@ -165,8 +183,8 @@ function parseJSON (response) {
 
 module.exports = {
   validateOptions,
-  isProduction,
+  checkIsProduction,
   validatePayload,
-  format,
-  request
+  request,
+  format
 }

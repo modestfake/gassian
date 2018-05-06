@@ -1,8 +1,7 @@
 const {
   validateOptions,
-  isProduction,
+  checkIsProduction,
   validatePayload,
-  format,
   request
 } = require('./util')
 
@@ -13,12 +12,13 @@ class GAS {
     this.options = Object.assign({
       prefix: false,
       hash: true,
-      isServerOnProduction: false
+      isServerOnProduction: false,
+      logging: false
     }, options)
   }
 
   async send (payload) {
-    if (!isProduction(this.options)) {
+    if (!this.options.logging && !checkIsProduction(this.options)) {
       return null
     }
 
@@ -30,18 +30,7 @@ class GAS {
 
     validatePayload(payload)
 
-    if (multi) {
-      return request(
-        this.options.apiUrl,
-        { events: payload.map(event => format(event, this.options)) },
-        multi
-      )
-    }
-
-    return request(
-      this.options.apiUrl,
-      format(payload, this.options)
-    )
+    return request(payload, this.options, multi)
   }
 }
 

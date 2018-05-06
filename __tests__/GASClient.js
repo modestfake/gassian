@@ -173,4 +173,44 @@ describe('GAS on client', () => {
     const response = await gas.send([])
     expect(response).toBe(undefined)
   })
+
+  test('Logging is true and environment is not production', async () => {
+    jsdom.reconfigure({
+      url: 'https://dev.domain.com/'
+    })
+
+    console.log = jest.fn()
+
+    const gas = new GAS({
+      ...defaultOptions,
+      logging: true
+    })
+
+    await gas.send({
+      name: 'test-event',
+      user: 'user-123',
+      cloudId: 'test-cloud-id'
+    })
+
+    expect(console.log).toHaveBeenCalled()
+  })
+
+  test('Logging is true and environment is production', async () => {
+    jsdom.reconfigure({
+      url: 'https://prod.domain.com/'
+    })
+
+    const gas = new GAS({
+      ...defaultOptions,
+      logging: true
+    })
+
+    await gas.send({
+      name: 'test-event',
+      user: 'user-123',
+      cloudId: 'test-cloud-id'
+    })
+
+    expect(console.log).toHaveBeenCalled()
+  })
 })

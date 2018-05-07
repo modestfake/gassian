@@ -1,3 +1,5 @@
+// @flow
+
 const {
   validateOptions,
   checkIsProduction,
@@ -5,8 +7,31 @@ const {
   request
 } = require('./util')
 
-class GAS {
-  constructor (options) {
+type Options = {
+  apiUrl: string,
+  product: string,
+  subproduct?: string,
+  domain: string,
+  version?: string,
+  prefix?: boolean,
+  hash?: boolean,
+  isServerOnProduction?: boolean,
+  logging?: boolean
+}
+
+type Payload = {
+  name: string,
+  page?: string,
+  user: string | number,
+  cloudId: string | number,
+  properties?: mixed,
+  hash?: mixed
+}
+
+class GAS<Options> {
+  options: Options
+
+  constructor (options: Options) {
     validateOptions(options)
 
     this.options = Object.assign({
@@ -17,7 +42,7 @@ class GAS {
     }, options)
   }
 
-  async send (payload) {
+  async send (payload: Payload | Array<Payload>) {
     if (!this.options.logging && !checkIsProduction(this.options)) {
       return null
     }

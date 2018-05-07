@@ -1,8 +1,13 @@
 {
-  "plugins": [
-    "jest"
+  "extends": [
+    "standard",
+    "plugin:flowtype/recommended"
   ],
-  "extends": "standard",
+  "plugins": [
+    "jest",
+    "flowtype"
+  ],
+  "parser": "babel-eslint",
   "rules": {
     "indent": ["error", 2, { "MemberExpression": "off" }]
   },

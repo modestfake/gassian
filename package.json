@@ -1,6 +1,6 @@
 {
   "name": "gassian",
-  "version": "0.5.4",
+  "version": "0.6.0",
   "description": "Tiny API wrapper for Atlassian Public Analytics aka GAS",
   "main": "dist/gassian.cjs.js",
   "module": "dist/gassian.esm.js",

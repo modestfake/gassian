@@ -45,7 +45,7 @@
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-standard": "^3.1.0",
     "jest": "^23.5.0",
-    "nock": "^9.6.1",
+    "nock": "^10.0.2",
     "rollup": "^0.64.1",
     "rollup-plugin-babel": "^3.0.7",
     "rollup-plugin-commonjs": "^9.1.5",

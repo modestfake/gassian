@@ -35,7 +35,7 @@ const gas = new GAS({
 
 | Parameter | Required | Default | Type | Description |
 | --- |:---:|:---:|:---:| --- |
-| apiUrl | yes | | string | Removed from the library by security reason. You can take URL from [GAS documentation](https://extranet.atlassian.com/display/ANALYTICS/Public+Analytics+aka+GAS) (Atlassian internal only). Don't forget to add version to URL |
+| apiUrl | yes | | string | Removed from the library by security reason. You can take URL from [GAS documentation](https://hello.atlassian.net/wiki/spaces/ANALYTICS/pages/134329570/Public+Analytics+aka+GAS+GASv2) (Atlassian internal only). Don't forget to add version to URL |
 | product | yes | | string | Product name (for add-ons main product name can be passed, e.g. jira or bitbucket) |
 | subproduct | no | | string | Add-on name like `addon-template` |
 | domain | yes | | string | Production domain. E.g. `prod.atlassian.com` |

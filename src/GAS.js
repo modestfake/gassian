@@ -1,23 +1,21 @@
-const {
-  validateOptions,
-  checkIsProduction,
-  validatePayload,
-  request
-} = require('./util')
+const { validateOptions, checkIsProduction, validatePayload, request } = require('./util')
 
 class GAS {
-  constructor (options) {
+  constructor(options) {
     validateOptions(options)
 
-    this.options = Object.assign({
-      prefix: false,
-      hash: true,
-      isServerOnProduction: false,
-      logging: false
-    }, options)
+    this.options = Object.assign(
+      {
+        prefix: false,
+        hash: true,
+        isServerOnProduction: false,
+        logging: false,
+      },
+      options,
+    )
   }
 
-  async send (payload) {
+  async send(payload) {
     if (!this.options.logging && !checkIsProduction(this.options)) {
       return null
     }
@@ -25,6 +23,7 @@ class GAS {
     const multi = Array.isArray(payload)
 
     if (multi && !payload.length) {
+      // eslint-disable-next-line no-console
       return console.warn('Empty array is not valid!')
     }
 

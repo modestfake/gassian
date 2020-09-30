@@ -33,19 +33,14 @@
   },
   "homepage": "https://github.com/modestfake/gassian#readme",
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-preset-env": "^1.7.0",
-    "coveralls": "^3.0.2",
-    "eslint": "^5.3.0",
-    "eslint-config-standard": "^11.0.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jest": "^21.21.0",
-    "eslint-plugin-node": "^7.0.1",
-    "eslint-plugin-promise": "^4.0.0",
-    "eslint-plugin-standard": "^3.1.0",
-    "jest": "^23.5.0",
-    "nock": "^9.6.1",
+    "@atlassian-partner-engineering/eslint-config": "^3.2.0",
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "coveralls": "^3.1.0",
+    "eslint": "^7.10.0",
+    "jest": "^26.4.2",
+    "jest-matcher-specific-error": "0.0.6",
+    "nock": "^13.0.4",
     "rollup": "^0.64.1",
     "rollup-plugin-babel": "^3.0.7",
     "rollup-plugin-commonjs": "^9.1.5",
@@ -60,6 +55,9 @@
     "testEnvironment": "./__tests__/helpers/env.js",
     "testPathIgnorePatterns": [
       "/helpers/"
+    ],
+    "setupFilesAfterEnv": [
+      "jest-matcher-specific-error"
     ]
   }
 }

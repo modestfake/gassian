@@ -10,7 +10,7 @@ export default [
     output: {
       name: 'gassian',
       file: pkg.browser,
-      format: 'umd'
+      format: 'umd',
     },
     external: ['md5', 'cross-fetch/polyfill'],
     plugins: [
@@ -18,22 +18,18 @@ export default [
       commonjs(),
       babel({
         exclude: 'node_modules/**',
-        plugins: ['external-helpers']
+        plugins: ['external-helpers'],
       }),
-      filesize()
-    ]
+      filesize(),
+    ],
   },
   {
     input: 'src/index.js',
     output: [
       { file: pkg.main, format: 'cjs' },
-      { file: pkg.module, format: 'es' }
+      { file: pkg.module, format: 'es' },
     ],
     external: ['md5', 'cross-fetch/polyfill'],
-    plugins: [
-      resolve(),
-      commonjs(),
-      filesize()
-    ]
-  }
+    plugins: [resolve(), commonjs(), filesize()],
+  },
 ]

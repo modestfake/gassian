@@ -48,8 +48,8 @@
     "rollup-plugin-node-resolve": "^3.3.0"
   },
   "dependencies": {
-    "cross-fetch": "^2.2.2",
-    "md5": "^2.2.1"
+    "cross-fetch": "^3.0.6",
+    "md5": "^2.3.0"
   },
   "jest": {
     "testEnvironment": "./__tests__/helpers/env.js",

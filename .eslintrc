@@ -1,16 +1,6 @@
 {
-  "plugins": [
-    "jest"
-  ],
-  "extends": "standard",
-  "rules": {
-    "indent": ["error", 2, { "MemberExpression": "off" }]
-  },
-  "env": {
-    "jest/globals": true
-  },
+  "extends": "@atlassian-partner-engineering",
   "globals": {
-    "jsdom": true,
-    "fetch": true
+    "jsdom": true
   }
 }

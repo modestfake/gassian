@@ -49,14 +49,12 @@ describe('GAS on server', () => {
       fetch,
     })
 
-    try {
-      await gas.send({
+    await expect(
+      gas.send({
         name: 'account.visited',
         user: undefined,
         cloudId: undefined,
-      })
-    } catch (error) {
-      expect(error.message).toBe('Please pass required fields: cloudId!')
-    }
+      }),
+    ).rejects.toMatchError(new Error('Please pass required fields: cloudId!'))
   })
 })

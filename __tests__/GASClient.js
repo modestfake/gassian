@@ -182,6 +182,7 @@ describe('GAS on client', () => {
       cloudId: 'test-cloud-id',
     })
 
+    // eslint-disable-next-line no-console
     expect(console.log).toHaveBeenCalled()
     // TODO: check if fetch is not called
   })
@@ -206,6 +207,7 @@ describe('GAS on client', () => {
       cloudId: 'test-cloud-id',
     })
 
+    // eslint-disable-next-line no-console
     expect(console.log).toHaveBeenCalled()
     // TODO: check if fetch is called
   })

@@ -1,7 +1,7 @@
-import resolve from 'rollup-plugin-node-resolve'
-import commonjs from 'rollup-plugin-commonjs'
-import babel from 'rollup-plugin-babel'
+import babel from '@rollup/plugin-babel'
+import commonjs from '@rollup/plugin-commonjs'
 import filesize from 'rollup-plugin-filesize'
+import resolve from '@rollup/plugin-node-resolve'
 import pkg from './package.json'
 
 export default [
@@ -18,7 +18,7 @@ export default [
       commonjs(),
       babel({
         exclude: 'node_modules/**',
-        plugins: ['external-helpers'],
+        babelHelpers: 'external',
       }),
       filesize(),
     ],

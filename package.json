@@ -49,7 +49,7 @@
     "rollup-plugin-filesize": "^9.0.2"
   },
   "dependencies": {
-    "cross-fetch": "^3.0.6",
+    "cross-fetch": "^3.1.0",
     "md5": "^2.3.0"
   },
   "jest": {
